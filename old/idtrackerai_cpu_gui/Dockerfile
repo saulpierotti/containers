@@ -12,13 +12,13 @@
 # Mail: saul@ebi.ac.uk
 # Edited: February 11th 2022
 
-FROM continuumio/miniconda3:4.10.3p1
+FROM condaforge/mambaforge:latest
+
+
+RUN mamba install python=3.7 pip
+RUN pip3 install "idtrackerai[gui]"
 
 ENV DEBIAN_FRONTEND=noninteractive
-
-RUN conda install python=3.6 &&\
-    /opt/conda/bin/pip3 install "idtrackerai[gui]"
-
 RUN apt update -y &&\
     apt install -y locales &&\
     echo "LC_ALL=en_US.UTF-8" >> /etc/environment &&\
@@ -26,20 +26,13 @@ RUN apt update -y &&\
     echo "LANG=en_US.UTF-8" > /etc/locale.conf &&\
     locale-gen en_US.UTF-8 &&\
     apt install -y qtbase5-dev
-
-# If run with singularity the guest user is the same as the host user
-# If run from docker the user is root
-# this is required for idtrackerai_test run on singularity since idtrackerai_test writes to its own directory
-RUN chmod -R 777 /opt/conda/lib/python3.6/site-packages/idtrackerai*
-
+RUN mamba install pytorch torchvision -c pytorch
 
 ENTRYPOINT idtrackerai
 
 LABEL note="\
 This is not an official container for idtrackerai. \
 This countainer can only be run with singularity (required for the GUI). \
-It was built from continuumio/miniconda3:4.10.3p1 and the pip package idtrackerai. \
-Refer to the respective maintainers for problems with those. \
 Absolutely no warranty implied, use at your own risk.\
 "
 LABEL how.to.test="\
