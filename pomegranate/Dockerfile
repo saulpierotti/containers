@@ -13,6 +13,9 @@ RUN mamba install -c conda-forge matplotlib=3.5.3
 RUN pip3 install pomegranate==0.14.8
 RUN mamba install -c conda-forge h5py=3.7.0
 
+# GPU support
+RUN mamba install -c conda-forge cupy=11.3.0 
+
 # needed for nice HMM plots
 RUN mamba install -c conda-forge pygraphviz=1.9
 
