@@ -27,6 +27,7 @@ RUN wget https://github.com/rwdavies/stitch/releases/download/1.6.10/STITCH_1.6.
 RUN apk add autoconf
 RUN apk add automake
 RUN R CMD INSTALL STITCH_1.6.10.tar.gz
+RUN apk add rsync
 
 LABEL note="Container for https://github.com/rwdavies/STITCH for use with Nextflow"
 LABEL maintainer="saul@ebi.ac.uk"
