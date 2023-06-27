@@ -2,28 +2,31 @@
 # Author: Saul Pierotti
 # Mail: saul@ebi.ac.uk
 
-FROM condaforge/mambaforge:22.11.1-4
+FROM alpine:3.18.2
 
-ENV DEBIAN_FRONTEND=noninteractive
+#RUN apk update
+run apk add git
+RUN git clone --recursive https://github.com/rwdavies/STITCH.git
+RUN apk add bash
+RUN apk add R
+RUN apk add alpine-sdk
+RUN apk add R-dev
+RUN apk add linux-headers
+RUN apk add libxml2-dev
+RUN apk add libpng-dev
+RUN apk add tiff-dev
+RUN apk add libjpeg-turbo-dev
+RUN apk add freetype-dev
+RUN apk add libgit2-dev
+RUN apk add fontconfig-dev
+RUN apk add pandoc
+RUN apk add fribidi-dev
+RUN apk add harfbuzz-dev
+RUN STITCH/scripts/install-dependencies.sh
+RUN wget https://github.com/rwdavies/stitch/releases/download/1.6.10/STITCH_1.6.10.tar.gz
+RUN R CMD INSTALL STITCH_1.6.10.tar.gz
 
-RUN mamba install -c conda-forge r-base=4.2.3
-RUN mamba install -c bioconda r-rrbgen=0.0.6
-RUN mamba install -c conda-forge r-remotes=2.4.2
-RUN apt update && apt upgrade -y
-RUN apt install -y apt-utils
-RUN apt install -y pkg-config
-RUN apt install -y autoconf
-RUN apt install -y automake
-RUN apt install -y xz-utils
-RUN apt install -y zlib1g-dev
-RUN apt install -y libbz2-dev
-RUN apt install -y liblzma-dev
-RUN apt install -y build-essential
-RUN Rscript -e "remotes::install_github(\"rwdavies/STITCH/STITCH\")"
-RUN apt install -y rsync
-RUN mamba install -c bioconda htslib=1.17
-
-LABEL note="Development version of https://github.com/rwdavies/STITCH for use with Nextflow"
+LABEL note="Container for https://github.com/rwdavies/STITCH for use with Nextflow"
 LABEL maintainer="saul@ebi.ac.uk"
 
 
