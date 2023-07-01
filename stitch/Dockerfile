@@ -22,12 +22,13 @@ RUN apk add fontconfig-dev
 RUN apk add pandoc
 RUN apk add fribidi-dev
 RUN apk add harfbuzz-dev
-RUN STITCH/scripts/install-dependencies.sh
-RUN wget https://github.com/rwdavies/stitch/releases/download/1.6.10/STITCH_1.6.10.tar.gz
 RUN apk add autoconf
 RUN apk add automake
-RUN R CMD INSTALL STITCH_1.6.10.tar.gz
 RUN apk add rsync
+RUN apk add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing htslib-tools
+RUN STITCH/scripts/install-dependencies.sh
+RUN wget https://github.com/rwdavies/stitch/releases/download/1.6.9/STITCH_1.6.9.tar.gz
+RUN R CMD INSTALL STITCH_1.6.9.tar.gz
 
 LABEL note="Container for https://github.com/rwdavies/STITCH for use with Nextflow"
 LABEL maintainer="saul@ebi.ac.uk"
