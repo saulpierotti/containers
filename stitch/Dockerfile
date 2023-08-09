@@ -4,9 +4,8 @@
 
 FROM alpine:3.18.2
 
-#RUN apk update
+RUN apk update
 run apk add git
-RUN git clone --recursive https://github.com/rwdavies/STITCH.git
 RUN apk add bash
 RUN apk add R
 RUN apk add alpine-sdk
@@ -26,9 +25,10 @@ RUN apk add autoconf
 RUN apk add automake
 RUN apk add rsync
 RUN apk add -X http://dl-cdn.alpinelinux.org/alpine/edge/testing htslib-tools
+RUN git clone --recursive --depth 1 https://github.com/rwdavies/STITCH.git --branch 1.6.10
 RUN STITCH/scripts/install-dependencies.sh
-RUN wget https://github.com/rwdavies/stitch/releases/download/1.6.9/STITCH_1.6.9.tar.gz
-RUN R CMD INSTALL STITCH_1.6.9.tar.gz
+RUN wget https://github.com/rwdavies/stitch/releases/download/1.6.10/STITCH_1.6.10.tar.gz
+RUN R CMD INSTALL STITCH_1.6.10.tar.gz
 
 LABEL note="Container for https://github.com/rwdavies/STITCH for use with Nextflow"
 LABEL maintainer="saul@ebi.ac.uk"
