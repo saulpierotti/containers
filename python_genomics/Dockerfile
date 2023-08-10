@@ -2,7 +2,6 @@
 # Author: Saul Pierotti
 # Mail: saul@ebi.ac.uk
 
-# Corretto is a no-cost, production-ready distribution of the Open Java Development Kit (OpenJDK).
 FROM condaforge/mambaforge:23.1.0-4
 
 # needed by nextflow
