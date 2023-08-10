@@ -10,7 +10,6 @@ RUN mamba install --yes -c conda-forge \
 	dask=2023.6.1 \
 	zarr=2.15.0 \
 	scikit-allel=1.3.6 \
-	zlib=1.2.13 \
 	bioconda::tabix=1.11
 
 ENTRYPOINT "/bin/bash"
