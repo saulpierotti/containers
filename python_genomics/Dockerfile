@@ -1,4 +1,4 @@
-# General-purpose containers with tools for out-of-core genomics data analisis in python
+# General-purpose container with tools for out-of-core genomics data analisis in python
 # Author: Saul Pierotti
 # Mail: saul@ebi.ac.uk
 
