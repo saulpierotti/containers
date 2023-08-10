@@ -4,10 +4,16 @@
 
 FROM condaforge/mambaforge:23.1.0-4
 
-# needed by nextflow
-RUN mamba install --yes python=3.10.12 anndata=0.9.1 dask=2023.6.1 zarr=2.15.0 scikit-allel=1.3.6 bioconda::tabix=1.11
+RUN mamba install --yes -c conda-forge \
+	python=3.10.12 \
+	anndata=0.9.1 \
+	dask=2023.6.1 \
+	zarr=2.15.0 \
+	scikit-allel=1.3.6 \
+	zlib=1.2.13 \
+	bioconda::tabix=1.11
 
 ENTRYPOINT "/bin/bash"
 
-LABEL note="General-purpose containers with tools for out-of-core genomics data analisis in python"
+LABEL note="General-purpose containers with tools for out-of-core genomics data analysis in python"
 LABEL maintainer="saul@ebi.ac.uk"
