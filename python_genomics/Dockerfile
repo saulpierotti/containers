@@ -12,7 +12,5 @@ RUN mamba install --yes -c conda-forge \
 	scikit-allel=1.3.6 \
 	bioconda::tabix=1.11
 
-ENTRYPOINT "/bin/bash"
-
 LABEL note="General-purpose containers with tools for out-of-core genomics data analysis in python"
 LABEL maintainer="saul@ebi.ac.uk"
