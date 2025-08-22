@@ -1,8 +1,6 @@
-# Author: Saul Pierotti
-# Mail: saulpierotti@gmail.com
-
-FROM condaforge/mambaforge:24.9.2-0
-RUN mamba install -y r-pgenlibr r-irkernel
-LABEL maintainer="saulpierotti@gmail.com"
+FROM ubuntu:25.10
+RUN apt update && apt install -y build-essential r-base && rm -rf /var/lib/apt/lists/*
+RUN R -e 'install.packages("pgenlibr")'
+RUN R -e 'install.packages("irkernel")'
 
 
